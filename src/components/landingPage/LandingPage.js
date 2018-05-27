@@ -1,49 +1,81 @@
 import React, { Component } from "react";
-import "./landingPage.css";
+import "./LandingPage.css";
+import HotelAndPlane from "../hotelAndPlane/HotelAndPlane";
+import Plane from "../PlaneOnly/PlaneOnly";
+import Hotel from "../HotelOnly/HotelOnly";
 
-class landingPage extends Component {
-  state = {};
+class LandingPage extends Component {
+  state = {
+    pageNextFlag: false,
+    hotelAndPlaneFlag: false,
+    hotelFlag: false,
+    planeFlag: false
+  };
+  pageNextHandle = prop => {
+    this.setState({ pageNextFlag: false, [prop]: false });
+  };
   render() {
     return (
-      <div className="Search-Page-holder">
-        <input placeholder="Email" />
-        <input placeholder="Full Name" />
-        <peoplecount className="body-count">
-          <h4>How Many People Will Be Joining You?</h4>
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-          </select>
-        </peoplecount>
-        <hotelroom className="room-count">
-          <h4>How Many Rooms For Your Hotel?</h4>
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-          </select>
-        </hotelroom>
-      </div>
+      <main className="homepage-both-transition">
+        <div
+          className={
+            this.state.pageNextFlag
+              ? "LandingPageHolder-true"
+              : "LandingPageHolder-false"
+          }
+        >
+          <button
+            onClick={() => {
+              this.setState({ planeFlag: true, pageNextFlag: true });
+            }}
+          >
+            AirPlane
+          </button>
+          <button
+            onClick={() => {
+              this.setState({ hotelFlag: true, pageNextFlag: true });
+            }}
+          >
+            Hotel
+          </button>
+          <button
+            onClick={() =>
+              this.setState({ hotelAndPlaneFlag: true, pageNextFlag: true })
+            }
+          >
+            AirPlane and Hotel
+          </button>
+          <h6>Car Rentals Coming Soon!</h6>
+        </div>
+        <hotelplaneanimation
+          className={
+            this.state.hotelAndPlaneFlag
+              ? "hotel-plane-animation-true"
+              : "hotel-plane-animation-false"
+          }
+        >
+          <HotelAndPlane page={this.pageNextHandle} />
+        </hotelplaneanimation>
+        <hotelanimation
+          className={
+            this.state.hotelFlag
+              ? "hotel-animation-true"
+              : "hotel-animation-false"
+          }
+        >
+          <Hotel page={this.pageNextHandle} />
+        </hotelanimation>
+        <planeanimation
+          className={
+            this.state.planeFlag
+              ? "plane-animation-true"
+              : "plane-animation-false"
+          }
+        >
+          <Plane page={this.pageNextHandle} />
+        </planeanimation>
+      </main>
     );
   }
 }
-export default landingPage;
+export default LandingPage;

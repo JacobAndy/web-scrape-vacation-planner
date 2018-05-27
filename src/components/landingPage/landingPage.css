@@ -1,20 +1,42 @@
-body {
-  background-color: whitesmoke;
-}
-.body-count,
-.room-count,
-.Search-Page-holder {
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-around;
-  align-items: center;
-}
-.Search-Page-holder {
-  height: 80vh;
+.LandingPageHolder-false,
+.LandingPageHolder-true {
   width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
 }
-.body-count {
+.LandingPageHolder-false {
+  left: 0vw;
+  transition: 1s;
 }
-.room-count {
+.LandingPageHolder-true {
+  left: -100vw;
+  transition: 1s;
+}
+.homepage-both-transition {
+  display: flex;
+  flex-direction: row;
+}
+.hotel-plane-animation-false,
+.hotel-plane-animation-true,
+.plane-animation-true,
+.hotel-animation-true,
+.plane-animation-false,
+.hotel-animation-false {
+  position: absolute;
+}
+.hotel-plane-animation-false,
+.plane-animation-false,
+.hotel-animation-false {
+  left: 100vw;
+  transition: 1s;
+}
+.hotel-plane-animation-true,
+.plane-animation-true,
+.hotel-animation-true {
+  left: 0;
+  transition: 1s;
 }
